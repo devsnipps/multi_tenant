@@ -1,4 +1,4 @@
-tures:
+features:
 
 Multi tenant
 
