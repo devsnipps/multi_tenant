@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @restaurant.description %>
+</p>
+<br>
+<h2>Menus for <%= @restaurant.name %></h2>
+
+<% @menus.each do |menu| %>
+  <p><%= link_to menu.title, menu_path(menu) %></p>
+<% end %>
+<br>
+<br>
+
+<%= link_to 'Add menu', new_menu_path(:restaurant_id => @restaurant.id) %>
+<br><br>
+<h3>Edit restaurant</h3>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>

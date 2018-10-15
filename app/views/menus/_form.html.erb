@@ -1,0 +1,50 @@
+<%= nested_form_for(@menu) do |f| %>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+      <% @menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    
+    <%= f.hidden_field :restaurant_id, :value => params[:restaurant_id] %>
+  </div>
+  
+  <%= f.fields_for :items do |i| %>
+    
+    <div class="field">
+      <%= i.label :name %><br>
+      <%= i.text_field :name %>
+    </div>
+    <div class="field">
+      <%= i.label :price %><br>
+      <%= i.text_field :price %>
+    </div>
+    
+    <div class="field">
+      <%= i.label :description %><br>
+      <%= i.text_area :description %>
+    </div>
+    
+    <%= i.link_to_remove "Remove item" %>
+  
+  <% end %>
+  <%= f.link_to_add "Add an item", :items %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
